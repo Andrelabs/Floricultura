@@ -1,0 +1,5 @@
+<h3> Nova categoria </h3>
+
+<%= form_for([:admin, @categoria], :method => :post) do |form| %>
+	<%= render(:partial => "form" , :locals => {:form => form}) %>
+<% end %>

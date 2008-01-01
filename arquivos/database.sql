@@ -1,6 +1,27 @@
 create database lojavirtualdb;
 
+	find_by_sql("
+			SELECT
+			 produtos.nome,
+			 produtos.preco,
+			 produtos.quantidade,
+			 produtos.situacao,
+			 usuarios.nome AS anuciante 
+			FROM 
+				produtos
+				INNER JOIN usuarios ON (usuarios.id = produtos.anuciante_id)
+			ORDER BY
+				produtos.id 
+		")
+
 BEGIN;
+
+create table categoria_produtos (
+	id serial primary key,
+	nome varchar,
+	situacao boolean default false,
+	created_at timestamp default now()
+);
 
 create table produtos (
 	id serial primary key,
@@ -9,9 +30,11 @@ create table produtos (
 	preco decimal(10,2),
 	situacao boolean default false,
 	quantidade integer,
+	categoria_produto_id integer references categoria_produtos(id),
 	created_at timestamp default now()
 );
 
+COMMIT;
 create table pedidos (
 	id serial primary key,
 	estado varchar default 'carrinho',

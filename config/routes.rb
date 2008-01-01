@@ -20,7 +20,8 @@ Lojavirtual::Application.routes.draw do
   namespace :admin do 
     get "/" => "menu#index"
     get "produtos/situacao_produto"    
-    resources :produtos    
+    resources :produtos
+    resources :categoria_produtos    
   end
  
 end

@@ -1,0 +1,5 @@
+<h3> Editar categoria </h3>
+
+<%= form_for([:admin, @categoria]) do |form| %>
+	<%= render(:partial => "form" , :locals => {:form => form}) %>
+<% end %>

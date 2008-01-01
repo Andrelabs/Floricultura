@@ -1,5 +1,5 @@
 class Pedido < ActiveRecord::Base
-	self.table_name = "pedidos"
+	#self.table_name = "pedidos"
 	has_many :item
 	has_many :produto, :through => :item
 

@@ -1,0 +1,19 @@
+<h3> Categorias de produto </h3>
+
+<%= link_to "Nova categorias" , new_admin_categoria_produto_path %>
+<%= link_to "Novo produto" , new_admin_produto_path %>
+
+<table>	
+	<th> Nome </th>
+	<th> Criado em </th>
+	<th></th>
+<% @categoria.each do |ct| %>
+	<tr>
+		<td> <%= ct.nome %> </td>
+		<td> <%= ct.created_at.strftime("%d/%m/%Y - %H:%M")%>
+		<td>
+			<%= link_to "Editar" , edit_admin_categoria_produto_path(ct.id) %>
+			<%= link_to "Apagar" , admin_categoria_produto_path(ct.id) , :data => {confirm: "Atenção ao apagar essa categoria os produtos com elas serão desativados."} , :method => :delete %>
+		</td>
+	</tr>
+<% end %>

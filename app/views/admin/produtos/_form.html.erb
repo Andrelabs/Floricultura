@@ -19,6 +19,11 @@
 </p>
 
 <p>
+	Categoria: <br />
+	<%= form.select :quantidade , options_for_select([["",""]] + @categoria.map { |ct| ct.nome }) %>
+</p>
+
+<p>
 	Descrição: <br />
 	<%= form.text_area :descricao , :size => "35x5" %>
 </p>

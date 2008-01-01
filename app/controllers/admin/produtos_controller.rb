@@ -9,6 +9,7 @@ class Admin::ProdutosController < Admin::BaseController
 
 	def new
 		@produto = Produto.new
+		@categoria = CategoriaProduto.where("situacao = ?", false)
 	end
 
 	def create
@@ -25,12 +26,14 @@ class Admin::ProdutosController < Admin::BaseController
 			flash[:notice] = "Produto salvo com sucesso"
 			redirect_to :action => :index
 		else
+			@categoria = CategoriaProduto.where("situacao = ?", false)
 			render :action => :new
 		end
 	end
 
 	def edit
 		@produto = Produto.find(params[:id])
+		@categoria = CategoriaProduto.where("situacao = ?", false)
 	end
 
 	def update
@@ -45,6 +48,7 @@ class Admin::ProdutosController < Admin::BaseController
 			flash[:notice] = "produto atualizado!"
 			redirect_to :action => :show , :id => params[:id]
 		else
+			@categoria = CategoriaProduto.where("situacao = ?", false)
 			render :action => :edit
 		end
 	end
