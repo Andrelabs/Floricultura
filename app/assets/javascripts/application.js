@@ -13,4 +13,9 @@
 //= require jquery
 //= require jquery_ujs
 //= require turbolinks
+//= require twitter/bootstrap
 //= require_tree .
+
+jQuery(function () {
+	jQuery(".alert-message").alert();
+});

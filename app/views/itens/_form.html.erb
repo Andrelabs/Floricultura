@@ -1,0 +1,7 @@
+<%= form_tag itens_path, :html => {:method => :post } do %>
+	<%= hidden_field_tag :produto_id , produto.id %>
+	<p>
+		<%= text_field_tag :quantidade , 1 %>
+		<%= submit_tag 'Adicionar Ao carrinho' %>
+	</p>
+<% end %>
