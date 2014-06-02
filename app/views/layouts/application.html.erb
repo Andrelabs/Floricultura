@@ -5,6 +5,7 @@
   <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
   <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
   <%= csrf_meta_tags %>
+  
 </head>
 <body>
 	<div class="container">
@@ -15,6 +16,10 @@
 					<p> <strong> <%= flash[key] %></strong> </p>
 				</div>
 			<% end %>
+		<% end %>
+		<%= link_to "Produtos" , root_url %>
+		<% if not pedido_atual.item.blank? %>
+			<%= link_to "Meu carrinho" , itens_path %>
 		<% end %>
 		<%= yield %>
 	</div>
