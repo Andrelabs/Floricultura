@@ -1,0 +1,22 @@
+<tr>
+	<td> <%= produto.id %> </td>	
+	<td> <%= produto.nome %> </td>	
+	<td> <%= number_to_currency( produto.preco , unit: "R$", separator: ",", delimiter: "") %> </td>
+	<td> <%= produto.quantidade %> </td>
+	<td>
+		<% if produto.situacao == false %> 
+	 		<%= "Ativo" %>
+	 	<% else %>
+	 		<%= "Inativo" %>
+	 	<% end %>
+	</td>
+	<td>
+	 <%= link_to "Detalhes" , admin_produto_path(produto.id) %> <%= link_to "Editar" , {:controller => :produtos , :action => :edit , :id => produto.id } %>
+	 <% if produto.situacao == false %>
+	 	<%= link_to "Inativar" , {:controller => :produtos , :action => :situacao_produto , :produto_id => produto.id , :acao => "in"} %> 
+	 <% else %>
+	 	<%= link_to "Ativar" , {:controller => :produtos , :action => :situacao_produto , :produto_id => produto.id, :acao => "at" } %> 
+	 <% end %>
+	</td>
+</tr>
+	

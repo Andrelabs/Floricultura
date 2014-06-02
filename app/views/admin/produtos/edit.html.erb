@@ -1,0 +1,9 @@
+<h3> Editar Produto </h3>
+
+<%= form_for([:admin, @produto]) do |f| %>
+	<%= render(:partial => "form" , :locals => {:form => f })%>
+<% end %>
+
+<br />
+
+<%= link_to "Voltar" , admin_produtos_path %>

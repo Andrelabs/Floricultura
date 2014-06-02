@@ -1,0 +1,16 @@
+<p>
+	<%= produto.nome %> <br />
+	<%= number_to_currency( produto.preco , unit: "R$", separator: ",", delimiter: "") %> <br />
+
+	<% if produto.quantidade > 0 and produto.situacao == false %>
+		<%= form_tag itens_path, :html => {:method => :post } do %>
+			<%= hidden_field_tag :produto_id , produto.id %>
+			Quantidade <%= text_field_tag :quantidade , 1 , :size => 3 %> <br />
+			<%= submit_tag 'Adicionar ao carrinho' %>
+		<% end %>
+	<% else %>
+		<%= "Produto indisponivél" %>
+	<% end %>
+</p>
+
+<br />

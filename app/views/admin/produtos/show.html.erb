@@ -1,0 +1,44 @@
+<h3> Exibir produtos </h3>
+
+<% @produto.each do |produto| %>
+	<%= link_to "Editar" , edit_admin_produto_path(produto.id) %> 
+	<% if produto.situacao == false %>
+	 	<%= link_to "Inativar" , {:controller => :produtos , :action => :situacao_produto , :produto_id => produto.id , :acao => "in"} %> 
+	 <% else %>
+	 	<%= link_to "Ativar" , {:controller => :produtos , :action => :situacao_produto , :produto_id => produto.id, :acao => "at" } %> 
+	 <% end %>
+
+	 <br/>
+
+	<p> 
+		Nome:
+		<%= produto.nome %>
+	</p>
+	<p> 
+		Preço: 
+		<%= number_to_currency( produto.preco , unit: "R$", separator: ",", delimiter: "") %>
+	</p>
+	<p> 
+		Quantidade disponível:
+		<%= produto.quantidade %> 
+	</p>
+	<p> 
+		Quantidade Vendida:
+		<%= "Quant" %> 
+	</p>
+	<p> 
+		Situação:
+		<% if produto.situacao == true %>
+			<%= "Indisponível" %>
+		<% else %>
+			<%= "Disponível"%>
+		<% end %> 
+	</p>
+	<p> 
+		Descrição do Produto:
+		<%= produto.descricao %> 
+	</p>
+<% end %>
+
+<br />
+<%= link_to "Voltar" , admin_produtos_path %>

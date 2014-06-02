@@ -1,0 +1,20 @@
+
+<h3> Produtos </h3>
+
+<%= link_to "Cadastar produto" , new_admin_produto_path %>
+<br />
+<br />
+
+<table>
+	<tr>
+		<th> Código </th>
+		<th> Nome </th>
+		<th> Quantidade </th>
+		<th> Preço </th>
+		<th> Siatuação </th>
+	</tr>
+	<% @produtos.each do |produto|%>
+		<%= render(:partial => "form_produto" , :locals => {:produto => produto})%>
+	<% end %>
+
+</table>

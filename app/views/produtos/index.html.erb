@@ -1,0 +1,6 @@
+Produtos
+<br />
+
+<% @produtos.each do |produto|%>
+	<%= render(:partial => "form" , :locals => {:produto => produto})%>
+<% end %>

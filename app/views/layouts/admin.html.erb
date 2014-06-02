@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Loja virtual administração</title>
+  <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
+  <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+	<div class="container">
+		<% [:notice , :error].each do |key| %>
+			<% unless flash[key].blank? %>
+				<div class="alert-message <%= key %>">					
+					<p> <strong> <%= flash[key] %>
+						<a class="close" href="javascript:void(0)"> &times; </a>
+					</strong> </p>
+				</div>
+			<% end %>
+		<% end %>
+		<%= link_to "Produtos" , admin_produtos_path %>
+		<%= link_to "Pedidos" , "#" %>
+		<%= link_to "Clientes" , "#" %>
+		<%= link_to "Relatórios" , "#" %>
+		<%= link_to "Sair" , "#" %>
+
+		<%= yield %>
+	</div>
+</body>
+</html>
