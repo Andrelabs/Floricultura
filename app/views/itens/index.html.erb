@@ -1,4 +1,4 @@
-<%= form_tag atualizar_carrinho_itens_path , :method => post do %>	
+<%= form_tag atualizar_carrinho_itens_path  do %>	
 	<table border=1>
 		<tr>
 			<th> Código </th>
@@ -7,21 +7,15 @@
 			<th> Preço uni. </th>
 			<th> Total </th>
 		</tr>	
-		<% pedido_atual.item.each do |itens| %>
+		<% pedido_atual.item.each do |itens| %>			
 			<%= render(:partial => "item" , :locals => {:itens => itens})%>
 		<% end %>
-		<tr>
+				<tr>
 			<td colspan=3> </td>
 			<td> Total da compra </td>
 			<td> <%= fmt_real(pedido_atual.preco_total) %> </td>
 		</tr>
 	</table>
+	<%= submit_tag "Atualizar Carrinho" %>
 <% end %>
 
-<%= form_tag itens_path, :html => {:method => :post } do %>
-	<%= hidden_field_tag :produto_id , produto.id %>
-	<p>
-		<%= text_field_tag :quantidade , 1 %>
-		<%= submit_tag 'Adicionar Ao carrinho' %>
-	</p>
-<% end %>

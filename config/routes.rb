@@ -1,6 +1,20 @@
 Lojavirtual::Application.routes.draw do
  
   resources :itens
+  resources :itens do
+    collection do
+      post 'atualizar_carrinho'
+    end
+  end
+  resources :produtos
+
+  root :to => "produtos#index"
+
+  namespace :admin do 
+    get "/" => "menu#index"
+    get "produtos/situacao_produto"
+    resources :produtos    
+  end
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

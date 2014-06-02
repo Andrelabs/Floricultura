@@ -14,6 +14,9 @@ class ItensController < ApplicationController
 	end
 	
 	def atualizar_carrinho
-		
+		params.permit!
+		pedido_atual.update_attributes(params[:pedido])
+		flash[:notice] = "Carinnho atualizado com sucesso!"
+		redirect_to itens_path
 	end
 end

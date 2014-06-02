@@ -1,0 +1,12 @@
+<tr>
+	<td> <%= itens.produto_id %></td>
+	<td> <%= itens.nome %></td>
+	<td>
+		<%= hidden_field_tag 'pedido[item_attributes][][id]', itens.id %>
+		<%= text_field_tag 'pedido[item_attributes][][quantidade]', itens.quantidade , :size => 3%>
+	</td>
+	<td> <%= fmt_real(itens.preco_unitario) %> </td>
+	<td> <%= fmt_real(itens.preco_total) %> </td>
+</tr>
+
+

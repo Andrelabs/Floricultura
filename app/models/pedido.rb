@@ -1,7 +1,7 @@
 class Pedido < ActiveRecord::Base
 	self.table_name = "pedidos"
 	has_many :item
-	has_many :produtos, :through => :items
+	has_many :produto, :through => :item
 
 	#para aninhar os objetos em umapágina
 	accepts_nested_attributes_for :item
