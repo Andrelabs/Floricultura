@@ -35,6 +35,10 @@ end
 #imagem editor upload
 #gem "paperclip", :git => "git://github.com/thoughtbot/paperclip.git"
 
+#folha de estilo
+gem 'bootstrap-sass'
+
+
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 

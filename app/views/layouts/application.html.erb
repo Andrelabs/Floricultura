@@ -7,38 +7,61 @@
   <%= csrf_meta_tags %>
   
 </head>
-<body>
-	<div class="container">
-		<% [:notice , :error].each do |key| %>
-			<% unless flash[key].blank? %>
-				<div class="alert-message <%= key %>">
-					<a class="close" href="javascript:void(0)"> &times; </a>
-					<p> <strong> <%= flash[key] %></strong> </p>
-				</div>
-			<% end %>
+<body role="document">
+
+	<% [:notice , :error].each do |key| %>
+		<% unless flash[key].blank? %>
+			<div class="alert-message <%= key %>">
+				<a class="close" href="javascript:void(0)"> &times; </a>
+				<p> <strong> <%= flash[key] %></strong> </p>
+			</div>
 		<% end %>
-		
-		<%= link_to "Produtos" , root_url %>
-		<% if not pedido_atual.item.blank? %>
-			<%= link_to "Meu carrinho" , itens_path %>
-		<% end %>
-		
-		<h4> 
-			Carrinho:
-				<% if pedido_atual.item.count > 0 %>
-					<%= pedido_atual.item.count %>
-				<% else %>
-					0
-				<% end %>
-				<% if pedido_atual.item.count > 1 %>
-					Itens
-				<% else %>
-					Item
-				<% end %>
-		 </h4>
+	<% end %>
+	<div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+		<div class="container">
+			<div class="navbar-header">	          
+				<%= link_to "Loja Vurtual" , "#" , :class => "navbar-brand"%>
+			</div>
+			<div class="navbar-collapse collapse">
+				<ul class="nav navbar-nav">
+					<li class="active"> <%= link_to "Produtos" , root_url %> </li>
+					<% if not pedido_atual.item.blank? %>
+						<li> <%= link_to "Meu carrinho" , itens_path %> </li>
+					<% end %>
+					 <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown">Opções <b class="caret"></b></a>
+              <ul class="dropdown-menu">
+                <li><a href="#">Action</a></li>
+                <li><a href="#">Another action</a></li>
+                <li><a href="#">Something else here</a></li>
+                <li class="divider"></li>
+                <li class="dropdown-header">Nav header</li>
+                <li><a href="#">Separated link</a></li>
+                <li><a href="#">One more separated link</a></li>
+              </ul>
+            </li>
+				</ul>
+			</div>
+				
+				<h4> 
+					Carrinho:
+					<% if pedido_atual.item.count > 0 %>
+						<%= pedido_atual.item.count %>
+					<% else %>
+						0
+					<% end %>
+					<% if pedido_atual.item.count > 1 %>
+						Itens
+					<% else %>
+						Item
+					<% end %>
+				</h4>
+			
+		</div>
+	</div>
 
 		<%= yield %>
 
-	</div>
+	
 </body>
 </html>
