@@ -1,3 +1,4 @@
 class Produto < ActiveRecord::Base
-	self.table_name = "produtos"
+	self.table_name = "produtos"	
+
 end

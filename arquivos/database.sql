@@ -28,5 +28,7 @@ create table itens(
 
 create index pedido_id_idx on itens(pedido_id);
 
+alter table produtos add column imagem varchar;
+
 
 COMMIT;

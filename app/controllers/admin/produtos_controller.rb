@@ -12,10 +12,13 @@ class Admin::ProdutosController < Admin::BaseController
 	end
 
 	def create
+
 		@produto = Produto.new
 		@produto.nome = params[:produto][:nome] if params[:produto][:nome]
 		@produto.preco = params[:produto][:preco] if params[:produto][:preco]
 		@produto.quantidade = params[:produto][:quantidade] if params[:produto][:quantidade]
+		@produto.descricao = params[:produto][:descricao] if params[:produto][:descricao]
+		
 
 		if @produto.save 
 			flash[:notice] = "Produto salvo com sucesso"
@@ -57,4 +60,10 @@ class Admin::ProdutosController < Admin::BaseController
 		redirect_to :action => :index
 		flash[:notice] = "Produto atualizado com sucesso!"
 	end	
+
+	private
+
+		def produto_params
+  		params.require(:produto).permit(:imagem)
+		end
 end

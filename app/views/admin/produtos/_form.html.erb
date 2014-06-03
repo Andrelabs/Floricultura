@@ -4,18 +4,23 @@
 </p>
 
 <p>
-	Descrição: <br />
-	<%= form.text_area :descricao , :size => "35x5" %>
-</p>
-
-<p>
 	Preço: <br />
 	<%= form.text_field :preco %>
 </p>
 
 <p>
+	Imagem: <br />
+	<%= form.file_field :imagem %>
+</p>
+
+<p>
 	Quantidade: <br />
 	<%= form.text_field :quantidade %>
+</p>
+
+<p>
+	Descrição: <br />
+	<%= form.text_area :descricao , :size => "35x5" %>
 </p>
 
 <p>
