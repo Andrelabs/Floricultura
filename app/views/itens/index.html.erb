@@ -6,6 +6,7 @@
 			<th> Quantidade </th>
 			<th> Preço uni. </th>
 			<th> Total </th>
+			<th></th>
 		</tr>	
 		<% pedido_atual.item.each do |itens| %>			
 			<%= render(:partial => "item" , :locals => {:itens => itens})%>

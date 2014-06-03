@@ -17,11 +17,28 @@
 				</div>
 			<% end %>
 		<% end %>
+		
 		<%= link_to "Produtos" , root_url %>
 		<% if not pedido_atual.item.blank? %>
 			<%= link_to "Meu carrinho" , itens_path %>
 		<% end %>
+		
+		<h4> 
+			Carrinho:
+				<% if pedido_atual.item.count > 0 %>
+					<%= pedido_atual.item.count %>
+				<% else %>
+					0
+				<% end %>
+				<% if pedido_atual.item.count > 1 %>
+					Itens
+				<% else %>
+					Item
+				<% end %>
+		 </h4>
+
 		<%= yield %>
+
 	</div>
 </body>
 </html>

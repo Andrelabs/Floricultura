@@ -19,4 +19,17 @@ class ItensController < ApplicationController
 		flash[:notice] = "Carinnho atualizado com sucesso!"
 		redirect_to itens_path
 	end
+
+	def destroy
+		itens = Item.find(params[:id])
+		itens.destroy
+		flash[:notice] = "Produto removido com sucesso!"
+		if pedido_atual.item.blank?
+			flash[:notice] = "Não há itens no carrinho!"
+			redirect_to produtos_path
+		else
+			redirect_to itens_path
+		end		
+	end
+	
 end

@@ -7,6 +7,7 @@
 	</td>
 	<td> <%= fmt_real(itens.preco_unitario) %> </td>
 	<td> <%= fmt_real(itens.preco_total) %> </td>
+	<td> <%= link_to "Remover da lista" , iten_path(itens.id) , data: {confirm: "Deseja Continuar?" }, :method => :delete %>
 </tr>
 
 
