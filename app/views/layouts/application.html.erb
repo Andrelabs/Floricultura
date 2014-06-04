@@ -7,60 +7,64 @@
   <%= csrf_meta_tags %>
   
 </head>
-<body role="document">
+<body role="document">	
 
-	<% [:notice , :error].each do |key| %>
-		<% unless flash[key].blank? %>
-			<div class="alert-message <%= key %>">
-				<a class="close" href="javascript:void(0)"> &times; </a>
-				<p> <strong> <%= flash[key] %></strong> </p>
+	<nav class="navbar navbar-inverse" role="navigation">		
+		<div class="navbar-header" >
+				<!-- Botões que ficão no menu-->
+	      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bar1" >
+	        <span class="sr-only">Toggle navigation</span>
+	        <span class="icon-bar"></span>
+	        <span class="icon-bar"></span>
+	        <span class="icon-bar"></span>
+	      </button>							
+				<%= link_to "Loja Virtual" , root_url , :class => "navbar-brand"%>
 			</div>
-		<% end %>
-	<% end %>
-	<div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
-		<div class="container">
-			<div class="navbar-header">	          
-				<%= link_to "Loja Vurtual" , "#" , :class => "navbar-brand"%>
-			</div>
-			<div class="navbar-collapse collapse">
+				<!-- Linhas do menu -->
+			<div class="collapse navbar-collapse" id="bar1">
 				<ul class="nav navbar-nav">
 					<li class="active"> <%= link_to "Produtos" , root_url %> </li>
 					<% if not pedido_atual.item.blank? %>
-						<li> <%= link_to "Meu carrinho" , itens_path %> </li>
+						<li> <%= link_to "Meu carrinho" , :controller => :itens , :action => :index %> </li>
 					<% end %>
-					 <li class="dropdown">
-              <a href="#" class="dropdown-toggle" data-toggle="dropdown">Opções <b class="caret"></b></a>
-              <ul class="dropdown-menu">
-                <li><a href="#">Action</a></li>
-                <li><a href="#">Another action</a></li>
-                <li><a href="#">Something else here</a></li>
-                <li class="divider"></li>
-                <li class="dropdown-header">Nav header</li>
-                <li><a href="#">Separated link</a></li>
-                <li><a href="#">One more separated link</a></li>
-              </ul>
-            </li>
 				</ul>
-			</div>
-				
-				<h4> 
-					Carrinho:
-					<% if pedido_atual.item.count > 0 %>
-						<%= pedido_atual.item.count %>
-					<% else %>
-						0
-					<% end %>
-					<% if pedido_atual.item.count > 1 %>
-						Itens
-					<% else %>
-						Item
-					<% end %>
-				</h4>
-			
-		</div>
-	</div>
+				<!-- local para o formulário de busca -->
 
-		<%= yield %>
+				<!-- local para o formulário de busca -->
+				<ul class="nav navbar-nav navbar-right">
+					<li><%= link_to "Cadastrar" , :controller => :usuarios , :action => :add %></li>
+	        <li><%= link_to "Entrar" , "#" %></li>          
+	      </ul>
+			</div>			
+		</div>
+	</nav>
+
+	<% flash.each do |key , msg| %>
+		<% unless flash[key].blank? %>
+			<div class="alert alert-<%= key %>">
+				<button type="button" class="close" data-dismiss="alert">&times;</button>
+				<%= msg %>
+			</div>
+		<% end %>
+	<% end %>		
+
+	<h4> 
+		Carrinho:
+		<% if pedido_atual.item.count > 0 %>
+			<%= pedido_atual.item.count %>
+		<% else %>
+			Nenhum
+		<% end %>
+		<% if pedido_atual.item.count > 1 %>
+			Itens
+		<% else %>
+			Item
+		<% end %>
+	</h4>		
+		
+	<div class="container">  	
+		<%= yield %>			
+	</div>
 
 	
 </body>

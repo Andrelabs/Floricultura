@@ -11,11 +11,14 @@
 // about supported directives.
 //
 //= require jquery
+//= require jquery-1.11.1
 //= require jquery_ujs
 //= require turbolinks
 //= require bootstrap
 //= require_tree .
 
 jQuery(function () {
-	jQuery(".alert-message").alert();
+	jQuery(".alert").alert();
+
 });
+

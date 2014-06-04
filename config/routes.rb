@@ -1,18 +1,24 @@
 Lojavirtual::Application.routes.draw do
  
-  resources :itens
-  resources :itens do
-    collection do
-      post 'atualizar_carrinho'
-    end
-  end
-  resources :produtos
+  #resources :itens
+  #resources :itens do
+    #collection do
+      #post 'atualizar_carrinho'
+    #end
+  #end
+  #resources :produtos
+
+  #get ':controller(/:action(/:id))(.:format)'
+  #post ':controller(/:action(/:id))(.:format)'
+
+  match ':controller(/:action(/:id))(.:format)', via: [:get, :post] 
+  resources :usuarios
 
   root :to => "produtos#index"
 
   namespace :admin do 
     get "/" => "menu#index"
-    get "produtos/situacao_produto"
+    get "produtos/situacao_produto"    
     resources :produtos    
   end
   # The priority is based upon order of creation: first created -> highest priority.

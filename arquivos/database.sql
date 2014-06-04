@@ -30,5 +30,33 @@ create index pedido_id_idx on itens(pedido_id);
 
 alter table produtos add column imagem varchar;
 
+create table usuarios (
+	id serial primary key,
+	nome varchar,
+	sobrenome varchar,
+	email varchar,
+	senha varchar,
+	senha_salt varchar,
+	sexo char(1),
+	dt_nascimento timestamp,
+	cpf numeric(11),
+	enderco varchar,
+	numero numeric,
+	complemento varchar,
+	bairro varchar,
+	cidade varchar,
+	estado char(2),
+	telefone varchar(10),
+	telefone_opt varchar(10),
+	celular varchar(11),
+	foto varchar,
+	confimacao boolean default false,
+	situacao boolean default false,
+	status boolean,
+	created_at timestamp default now()
+);
+
+alter table pedidos add column usuario_id integer references usuarios(id);
+alter table pedidos add column status boolean;
 
 COMMIT;
