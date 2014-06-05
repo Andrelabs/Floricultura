@@ -40,7 +40,9 @@ create table usuarios (
 	sexo char(1),
 	dt_nascimento timestamp,
 	cpf numeric(11),
-	enderco varchar,
+	rz_social varchar,
+	cnpj numeric(14),	
+	endereco varchar,
 	numero numeric,
 	complemento varchar,
 	bairro varchar,
@@ -53,10 +55,13 @@ create table usuarios (
 	confimacao boolean default false,
 	situacao boolean default false,
 	status boolean,
+	anuciante boolean,	
+	vendedor boolean,
+	anuciante_id integer references usuarios(id),
 	created_at timestamp default now()
 );
 
 alter table pedidos add column usuario_id integer references usuarios(id);
-alter table pedidos add column status boolean;
+alter table produtos add column anuciante_id integer references usuarios(id);
 
 COMMIT;
