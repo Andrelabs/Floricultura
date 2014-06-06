@@ -5,11 +5,16 @@ class Admin::BaseController < ApplicationController
 	private
 	
 	def loged_user	
-		if session[:user_id].blank?
+		if session[:usuario_id].blank?
 			flash[:danger] = "Você não está logado por favor realize seu login"
 			redirect_to root_url
 		else
-			@current_user ||= User.find(session[:user_id])
+			@current_user ||= Usuario.find(session[:usuario_id])
+		end
+
+		if current_user.anuciante == false
+			flash[:danger] = "Você não é anuciante por favor migre sua conta!"
+			redirect_to root_url
 		end
 	end
 end

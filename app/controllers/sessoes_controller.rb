@@ -8,7 +8,11 @@ class SessoesController < ApplicationController
 		if usuario
 			session[:usuario_id] = usuario.id
 			flash[:success] = "Bem vindo #{usuario.nome} #{usuario.sobrenome}"
-			redirect_to root_url
+			if usuario.anuciante == false
+				redirect_to root_url
+			else
+				redirect_to admin_path
+			end
 		else
 			flash[:danger] = "Usuário ou senha inválidos"
 			redirect_to :action => :new
