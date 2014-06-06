@@ -32,8 +32,13 @@
 
 				<!-- local para o formulário de busca -->
 				<ul class="nav navbar-nav navbar-right">
-					<li><%= link_to "Cadastrar" , :controller => :usuarios , :action => :add %></li>
-	        <li><%= link_to "Entrar" , "#" %></li>          
+					<% if session[:usuario_id].blank? %>
+						<li> <%= link_to "Cadastrar" , :controller => :usuarios , :action => :new %></li>
+	        	<li> <%= link_to "Entrar" , entrar_path %> </li>
+	        <% else %>
+	        	<li> <%= link_to "Cadastro" , "#" %> </li>
+	        	<li> <%= link_to "Sair" , sair_path %> </li>	        		
+	        <% end %>	                 
 	      </ul>
 			</div>			
 		</div>
@@ -61,7 +66,10 @@
 			Item
 		<% end %>
 	</h4>		
-		
+		Sessão: <%= session[:pedido_id] %> <br/>
+		<% if not session[:usuario_id].blank? %>
+		Usuario: <%= current_user.nome + " " + current_user.sobrenome %>
+		<% end %>
 	<div class="container">  	
 		<%= yield %>			
 	</div>

@@ -1,0 +1,25 @@
+<div style="border: 1px solid; border-radius: 20px; width: 250px; padding: 20px;">
+	<h4> Entar no sistema </h4>
+	<%= form_tag sessoes_path do %>
+		<table>
+			<tr>
+				<td> Email: </td>
+				<td> <%= text_field_tag :email , params[:email] %> <td>
+			</tr>
+			<tr>
+				<td> Senha: </td>
+				<td> <%= password_field_tag :senha  %> </td>
+			</tr>
+			<tr>				
+				<td colspan=2>
+					<%= check_box_tag :conectado  %> Ficar conectado?
+				</td>
+			</tr>
+			<tr>
+				<td colspan=2 align=center> 
+					<%= submit_tag "Entrar", :class => "bnt" %>
+				</td>
+			</tr>
+		</table>
+	<% end %>
+<div>

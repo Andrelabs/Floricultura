@@ -65,3 +65,23 @@ alter table pedidos add column usuario_id integer references usuarios(id);
 alter table produtos add column anuciante_id integer references usuarios(id);
 
 COMMIT;
+
+
+BEGIN;
+create table status_produtos(
+	id serial primary key,
+	nome varchar,
+	created_at timestamp default now()
+	);
+
+	insert into status_produtos (id , nome) values (1 , 'OK');
+	insert into status_produtos (id , nome) values (2 , 'Alerta');
+	insert into status_produtos (id , nome) values (3 , 'Critico');
+
+create table monitors (
+	id serial primary key,
+	status_id integer references status_produtos(id),
+	produto_id integer references produtos (id),
+	created_at timestamp default now()
+	);
+COMMIT;

@@ -1,0 +1,20 @@
+<div align="center" style="border: 1px solid; border-radius: 20px;">
+	<h3> Cadastre-se </h3>
+
+	<% if @usuario.errors.any? %>
+    	<div class="error_messages">
+      	<h2>Form is invalid</h2>
+      	<ul>
+        	<% for message in @usuario.errors.full_messages %>
+          	<li><%= message %></li>
+        	<% end %>
+      	</ul>
+   	 </div>
+  	<% end %>
+	<%= form_for(@usuario , :method => :post) do |form| %>
+		<%= render(:partial => "form" , :locals => {:form => form }) %>
+
+		<%= form.submit "Criar conta" , :class => "bt" %>
+
+	<% end %>
+</div>

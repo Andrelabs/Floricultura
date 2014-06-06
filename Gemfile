@@ -38,9 +38,11 @@ end
 #folha de estilo
 gem 'bootstrap-sass'
 
+#sobe as aplicações do rails
+gem 'puma', '~> 2.3.2'
 
 # Use ActiveModel has_secure_password
-# gem 'bcrypt', '~> 3.1.7'
+gem 'bcrypt', '~> 3.1.7' ,:require => 'bcrypt'
 
 # Use unicorn as the app server
 # gem 'unicorn'

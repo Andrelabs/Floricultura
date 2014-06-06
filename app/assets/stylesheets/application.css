@@ -12,3 +12,12 @@
  *= require bootstrap
  *= require_tree .
  */
+
+.bt {
+	background: #C0C0C0;
+	height: 40px;
+	width: 150px;
+	border-radius: 20pc;
+	margin-bottom: 5px;
+}
+

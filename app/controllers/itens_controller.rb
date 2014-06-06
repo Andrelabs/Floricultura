@@ -26,7 +26,7 @@ class ItensController < ApplicationController
 		flash[:info] = "Produto removido com sucesso!"
 		if pedido_atual.item.blank?
 			flash[:info] = "Não há itens no carrinho!"
-			redirect_to :controller => :produtos , :action => :index
+			redirect_to root_url
 		else
 			redirect_to :action => :index
 		end		

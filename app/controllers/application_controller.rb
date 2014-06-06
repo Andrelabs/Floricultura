@@ -4,6 +4,9 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
 
   helper_method :pedido_atual
+  helper_method :current_user
+
+  @teste = 10
 
   protected
     #verifica o pedido atual se a variável pedido_atual ou
@@ -15,4 +18,9 @@ class ApplicationController < ActionController::Base
   		  @pedido_atual ||= Pedido.new
       
   	end
+
+    #adiciona globalmente informações do usuário que está logado
+    def current_user
+      @current_user ||= Usuario.find(session[:usuario_id]) if session[:usuario_id]
+    end
 end

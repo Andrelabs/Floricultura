@@ -3,6 +3,14 @@
 		Nome: <br/>		
 			<%= form.text_field :nome , :size => 40 %> <br />		
 		Sobrenome: <br />
-		<%= form.text_field :sobrenome , :size => 40 %>
+		<%= form.text_field :sobrenome , :size => 40 %><br />
+		Email: <br />
+		<%= form.email_field :email , :size => 40 %><br />
+		Senha: <br />
+		<%= form.password_field :senha , :size => 25 %><br />
+		Confirme a senha: <br />
+		<%= form.password_field :senha_confirmation , :size => 25 %><br />
+		Anuciante <br />
+		<%= form.check_box :anuciante %> Marque essa opção para vender produtos 
 
 </div>
