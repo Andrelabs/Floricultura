@@ -1,7 +1,7 @@
 <p>
 	<%= produto.nome %> <br />
 	<%= number_to_currency( produto.preco , unit: "R$", separator: ",", delimiter: "") %> <br />
-
+	Anuciante: <%= produto.anuciante %>
 	<% if produto.quantidade > 0 and produto.situacao == false %>
 		<%= form_tag :controller => :itens , :action => :create, :html => {:method => :post } do %>
 			<%= hidden_field_tag :produto_id , produto.id %>

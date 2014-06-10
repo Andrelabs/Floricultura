@@ -7,11 +7,18 @@ class SessoesController < ApplicationController
 
 		if usuario
 			session[:usuario_id] = usuario.id
-			flash[:success] = "Bem vindo #{usuario.nome} #{usuario.sobrenome}"
-			if usuario.anuciante == false
-				redirect_to root_url
+
+			#verifica se os dados estão atualizados
+			if usuario.cpf.blank?
+				flash[:info] = "Você precisa atualizar algumas informações!"
+				redirect_to cadastro_path
 			else
-				redirect_to admin_path
+				flash[:success] = "Bem vindo #{usuario.nome} #{usuario.sobrenome}"
+				if usuario.anuciante == false
+					redirect_to root_url
+				else
+					redirect_to admin_path
+				end
 			end
 		else
 			flash[:danger] = "Usuário ou senha inválidos"

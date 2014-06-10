@@ -1,0 +1,92 @@
+<script>
+	$(".pj").hide();
+</script>
+<div class="form">
+	<h3> Atualize suas informações </h3>
+
+	<%= form_for(@usuario , :method => :post) do |form| %>
+		<table>
+			<tr>
+				<td> Nome: </td>
+				<td> <%= form.text_field :nome %> </td>
+			</tr>
+			<tr>
+				<td> Sobrenome: </td>
+				<td> <%= form.text_field :sobrenome %> </td>
+			</tr>		
+			<tr>
+				<td> CPF: </td>
+				<td> <%= form.text_field :cpf %> </td>
+			</tr>
+			<tr>
+				<td> Data de nascimento: </td>
+				<td> <%= form.text_field :dt_nascimento %> </td>
+			</tr>
+			<tr>
+				<td> Sexo: </td>
+				<td> M <%= form.radio_button :sexo , "m"  %> F <%= form.radio_button :sexo , "f" %> </td>
+			</tr>
+			<tr>
+				<td> Anuciar como Pessoa Jurdica </td>
+				<td> <%= form.check_box :vendedor , :onclick => "pj();" %> </td>
+			</tr>
+			<tr>
+					<td> Razão Social </td>
+					<td> <%= form.text_field :rz_social %> </td>
+				</div>
+			</tr>
+			<tr>
+				<td> CNPJ </td>
+				<td> <%= form.text_field :cnpj %> </td>
+			</tr>
+			<tr>
+				<td> Cep: </td>
+				<td> <%= form.text_field :cep %> </td>
+			</tr>
+			<tr>
+				<td> Endereço: </td>
+				<td> <%= form.text_field :endereco %> </td>
+			</tr>
+			<tr>
+				<td> Número: </td>
+				<td> <%= form.text_field :numero %> </td>
+			</tr>
+			<tr>
+				<td> Complemento: </td>
+				<td> <%= form.text_field :complemento %> </td>
+			</tr>
+			<tr>
+				<td> Bairro: </td>
+				<td> <%= form.text_field :bairro %> </td>
+			</tr>
+			<tr>
+				<td> Cidade: </td>
+				<td> <%= form.text_field :cidade %> </td>
+			</tr>
+			<tr>
+				<td> Estado: </td>
+				<td> <%= form.text_field :estado %> </td>
+			</tr>
+			<tr>
+				<td> *Telefone: </td>
+				<td> <%= form.text_field :telefone %> </td>
+			</tr>
+			<tr>
+				<td> Telefone opcional: </td>
+				<td> <%= form.text_field :telefone_opt %> </td>
+			</tr>
+			<tr>
+				<td> *Celular: </td>
+				<td> <%= form.text_field :celular %> </td>
+			</tr>
+			<tr>
+				<td> Foto: </td>
+				<td> <%= form.file_field :foto %> </td>
+			</tr>
+			<tr>			
+				<td colspan=2> <%= form.submit "Concluir" %> </td>
+			</tr>
+
+		</table>
+	<% end %>
+</div>

@@ -11,7 +11,7 @@ class UsuariosController < ApplicationController
 		@usuario = Usuario.new(usuario_params)
 		if @usuario.save
 			flash[:success] = "Conta criada com sucesso!"
-			#se criar o usuário ele loga rideto o sistema
+			#se criar o usuário ele loga direto o sistema
 			usuario = Usuario.atenticar(params[:email] , params[:senha])
 			redirect_to root_url		
 		else
@@ -19,7 +19,11 @@ class UsuariosController < ApplicationController
 		end
 	end
 
-
+	def atualiza_info
+		puts "=============="
+		puts session[:usuario_id]
+		@usuario = Usuario.find(session[:usuario_id])
+	end
 
 	private
 		def usuario_params

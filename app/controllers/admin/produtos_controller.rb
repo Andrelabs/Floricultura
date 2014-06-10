@@ -18,6 +18,7 @@ class Admin::ProdutosController < Admin::BaseController
 		@produto.preco = params[:produto][:preco] if params[:produto][:preco]
 		@produto.quantidade = params[:produto][:quantidade] if params[:produto][:quantidade]
 		@produto.descricao = params[:produto][:descricao] if params[:produto][:descricao]
+		@produto.usuario_id = session[:usuario_id]
 		
 
 		if @produto.save 
@@ -38,6 +39,7 @@ class Admin::ProdutosController < Admin::BaseController
 		@produto.preco = params[:produto][:preco] if params[:produto][:preco]
 		@produto.descricao = params[:produto][:descricao] if params[:produto][:descricao]
 		@produto.quantidade = params[:produto][:quantidade] if params[:produto][:quantidade]
+		@produto.anuciante_id = session[:usuario_id]
 		
 		if @produto.save
 			flash[:notice] = "produto atualizado!"

@@ -2,6 +2,7 @@ Lojavirtual::Application.routes.draw do
  
   get "entrar" => "sessoes#new" , :as => "entrar"
   get "sair" => "sessoes#destroy" , :as => "sair"
+  get "cadastro" => "usuarios#atualiza_info", :as => "cadastro"
 
   root :to => "produtos#index"  
 

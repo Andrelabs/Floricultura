@@ -43,6 +43,7 @@ create table usuarios (
 	rz_social varchar,
 	cnpj numeric(14),	
 	endereco varchar,
+	cep numeric,
 	numero numeric,
 	complemento varchar,
 	bairro varchar,
