@@ -4,7 +4,7 @@
 	<td> <%= number_to_currency( produto.preco , unit: "R$", separator: ",", delimiter: "") %> </td>
 	<td> <%= produto.quantidade %> </td>
 	<td>
-		<% if produto.situacao == false %> 
+		<% if produto.ativo == true %> 
 	 		<%= "Ativo" %>
 	 	<% else %>
 	 		<%= "Inativo" %>
@@ -12,7 +12,7 @@
 	</td>
 	<td>
 	 <%= link_to "Detalhes" , admin_produto_path(produto.id) %> <%= link_to "Editar" , {:controller => :produtos , :action => :edit , :id => produto.id } %>
-	 <% if produto.situacao == false %>
+	 <% if produto.ativo == true %>
 	 	<%= link_to "Inativar" , {:controller => :produtos , :action => :situacao_produto , :produto_id => produto.id , :acao => "in"} %> 
 	 <% else %>
 	 	<%= link_to "Ativar" , {:controller => :produtos , :action => :situacao_produto , :produto_id => produto.id, :acao => "at" } %> 

@@ -2,7 +2,7 @@
 
 <% @produto.each do |produto| %>
 	<%= link_to "Editar" , edit_admin_produto_path(produto.id) %> 
-	<% if produto.situacao == false %>
+	<% if produto.ativo == true %>
 	 	<%= link_to "Inativar" , {:controller => :produtos , :action => :situacao_produto , :produto_id => produto.id , :acao => "in"} %> 
 	 <% else %>
 	 	<%= link_to "Ativar" , {:controller => :produtos , :action => :situacao_produto , :produto_id => produto.id, :acao => "at" } %> 
@@ -28,7 +28,7 @@
 	</p>
 	<p> 
 		Situação:
-		<% if produto.situacao == true %>
+		<% if produto.ativo == false %>
 			<%= "Indisponível" %>
 		<% else %>
 			<%= "Disponível"%>

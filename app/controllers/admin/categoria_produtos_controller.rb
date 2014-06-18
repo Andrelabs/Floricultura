@@ -1,7 +1,7 @@
 class Admin::CategoriaProdutosController < Admin::BaseController
 
 	def index
-		@categoria = CategoriaProduto.where("situacao = ?" , false)
+		@categoria = CategoriaProduto.where("ativo = ?" , true)
 	end
 
 	def new
@@ -37,9 +37,9 @@ class Admin::CategoriaProdutosController < Admin::BaseController
 
 	def destroy
 		categoria = CategoriaProduto.find(params[:id])
-		categoria.update_attributes(:situacao => true)
+		categoria.update_attributes(:ativo => false)
 
-		flash[:success] = "Produto removido com sucesso!"
+		flash[:success] = "Categoria removido com sucesso!"
 		redirect_to admin_categoria_produtos_path
 	end
 

@@ -9,18 +9,13 @@
 </p>
 
 <p>
-	Imagem: <br />
-	<%= form.file_field :imagem %>
-</p>
-
-<p>
 	Quantidade: <br />
 	<%= form.text_field :quantidade %>
 </p>
 
 <p>
 	Categoria: <br />
-	<%= form.select :quantidade , options_for_select([["",""]] + @categoria.map { |ct| ct.nome }) %>
+	<%= form.select :categoria_produto_id , @categoria.collect{|ct| [ct.nome , ct.id ]} , {:include_blank => true} %>
 </p>
 
 <p>

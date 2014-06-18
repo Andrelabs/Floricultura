@@ -19,7 +19,7 @@ BEGIN;
 create table categoria_produtos (
 	id serial primary key,
 	nome varchar,
-	situacao boolean default false,
+	ativo boolean default true,
 	created_at timestamp default now()
 );
 
@@ -28,13 +28,23 @@ create table produtos (
 	nome varchar,
 	descricao varchar,
 	preco decimal(10,2),
-	situacao boolean default false,
+	ativo boolean default true,
 	quantidade integer,
 	categoria_produto_id integer references categoria_produtos(id),
 	created_at timestamp default now()
 );
 
+create table imagens( 
+	id serial primary key,
+	nome varchar,
+	caminho varchar,
+	ativo boolean default true,
+	produto_id integer references produtos(id),
+	created_at timestamp default now()
+	);
+
 COMMIT;
+BEGIN;
 create table pedidos (
 	id serial primary key,
 	estado varchar default 'carrinho',
@@ -51,7 +61,6 @@ create table itens(
 
 create index pedido_id_idx on itens(pedido_id);
 
-alter table produtos add column imagem varchar;
 
 create table usuarios (
 	id serial primary key,
@@ -62,9 +71,7 @@ create table usuarios (
 	senha_salt varchar,
 	sexo char(1),
 	dt_nascimento timestamp,
-	cpf numeric(11),
-	rz_social varchar,
-	cnpj numeric(14),	
+	cpf numeric(11),	
 	endereco varchar,
 	cep numeric,
 	numero numeric,
@@ -74,20 +81,15 @@ create table usuarios (
 	estado char(2),
 	telefone varchar(10),
 	telefone_opt varchar(10),
-	celular varchar(11),
-	foto varchar,
+	celular varchar(11),	
 	confimacao boolean default false,
-	situacao boolean default false,
-	status boolean,
-	anuciante boolean,	
-	vendedor boolean,
-	anuciante_id integer references usuarios(id),
+	ativo boolean default true,
+	status boolean,	
 	created_at timestamp default now()
 );
 
 alter table pedidos add column usuario_id integer references usuarios(id);
-alter table produtos add column anuciante_id integer references usuarios(id);
-
+alter table imagens add column usuario_id integer references usuarios(id);
 COMMIT;
 
 

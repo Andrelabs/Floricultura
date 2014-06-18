@@ -9,18 +9,12 @@ class Admin::ProdutosController < Admin::BaseController
 
 	def new
 		@produto = Produto.new
-		@categoria = CategoriaProduto.where("situacao = ?", false)
+		@categoria = CategoriaProduto.where("ativo = ?", true)
 	end
 
 	def create
 
-		@produto = Produto.new
-		@produto.nome = params[:produto][:nome] if params[:produto][:nome]
-		@produto.preco = params[:produto][:preco] if params[:produto][:preco]
-		@produto.quantidade = params[:produto][:quantidade] if params[:produto][:quantidade]
-		@produto.descricao = params[:produto][:descricao] if params[:produto][:descricao]
-		@produto.usuario_id = session[:usuario_id]
-		
+		@produto = Produto.new(produto_params)		
 
 		if @produto.save 
 			flash[:notice] = "Produto salvo com sucesso"
@@ -33,22 +27,28 @@ class Admin::ProdutosController < Admin::BaseController
 
 	def edit
 		@produto = Produto.find(params[:id])
-		@categoria = CategoriaProduto.where("situacao = ?", false)
+		@categoria = CategoriaProduto.find_by_sql("
+			SELECT 
+				categoria_produtos.id,
+				categoria_produtos.nome
+			FROM 
+				categoria_produtos 
+				INNER JOIN produtos ON (produtos.categoria_produto_id = categoria_produtos.id)
+			WHERE
+				categoria_produtos.id = #{@produto.categoria_produto_id} AND categoria_produtos.ativo = true
+			")
+
 	end
 
 	def update
-		@produto = Produto.find(params[:id])
-		@produto.nome = params[:produto][:nome] if params[:produto][:nome]
-		@produto.preco = params[:produto][:preco] if params[:produto][:preco]
-		@produto.descricao = params[:produto][:descricao] if params[:produto][:descricao]
-		@produto.quantidade = params[:produto][:quantidade] if params[:produto][:quantidade]
-		@produto.anuciante_id = session[:usuario_id]
+		produto = Produto.find(params[:id])
+		produto.update_attributes(produto_params)
 		
-		if @produto.save
+		if produto.save
 			flash[:notice] = "produto atualizado!"
 			redirect_to :action => :show , :id => params[:id]
 		else
-			@categoria = CategoriaProduto.where("situacao = ?", false)
+			@categoria = CategoriaProduto.where("ativo = ?", true)
 			render :action => :edit
 		end
 	end
@@ -56,9 +56,9 @@ class Admin::ProdutosController < Admin::BaseController
 	def situacao_produto
 		@produto = Produto.find(params[:produto_id])
 		if params[:acao] == "in"
-			@produto.update_attributes(:situacao => true )
+			@produto.update_attributes(:ativo => false )
 		elsif params[:acao] == "at"
-			@produto.update_attributes(:situacao => false )
+			@produto.update_attributes(:situacao => true )
 		else
 			flash[:error] = "Situação não alterada"
 			redirect_to :action => :index
@@ -70,6 +70,6 @@ class Admin::ProdutosController < Admin::BaseController
 	private
 
 		def produto_params
-  		params.require(:produto).permit(:imagem)
+  		params.require(:produto).permit!
 		end
 end
