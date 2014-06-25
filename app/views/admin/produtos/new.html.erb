@@ -1,6 +1,6 @@
 <h3> Novo Produto </h3>
 
-<%= form_for([:admin, @produto] , :html => { :multipart => true }) do |f| %>
+<%= form_for [:admin, @produto] , multipart: true  do |f| %>
 	<%= render(:partial => "form" , :locals => {:form => f })%>
 <% end %>
 

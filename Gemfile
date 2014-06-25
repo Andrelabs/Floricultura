@@ -33,7 +33,7 @@ group :doc do
 end
 
 #imagem editor upload
-#gem "paperclip", :git => "git://github.com/thoughtbot/paperclip.git"
+gem "paperclip", :git => "git://github.com/thoughtbot/paperclip.git"
 
 #folha de estilo
 gem 'bootstrap-sass'
@@ -43,6 +43,8 @@ gem 'puma', '~> 2.3.2'
 
 # Use ActiveModel has_secure_password
 gem 'bcrypt', '~> 3.1.7' ,:require => 'bcrypt'
+
+gem "nested_form"
 
 # Use unicorn as the app server
 # gem 'unicorn'

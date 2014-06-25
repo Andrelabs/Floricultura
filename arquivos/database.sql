@@ -34,13 +34,13 @@ create table produtos (
 	created_at timestamp default now()
 );
 
-create table imagens( 
+create table imagens(
 	id serial primary key,
-	nome varchar,
-	caminho varchar,
-	ativo boolean default true,
-	produto_id integer references produtos(id),
-	created_at timestamp default now()
+	imagem_file_name varchar,
+	imagem_content_type varchar,
+	produto_id integer,
+	created_at timestamp,
+	updated_at timestamp
 	);
 
 COMMIT;

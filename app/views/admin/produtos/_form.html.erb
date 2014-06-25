@@ -17,11 +17,19 @@
 	Categoria: <br />
 	<%= form.select :categoria_produto_id , @categoria.collect{|ct| [ct.nome , ct.id ]} , {:include_blank => true} %>
 </p>
-
 <p>
 	Descrição: <br />
 	<%= form.text_area :descricao , :size => "35x5" %>
 </p>
+
+<% form.fields_for :imagem do |f_imagem| %>
+	<p>
+		Foto: 
+		<p style="border: 1px solid; width: 500px;">
+			<%= f_imagem.file_field :imagem %>
+		</p>
+	</p>
+<% end %>
 
 <p>
 	<%= form.submit "Salvar" %>

@@ -15,13 +15,15 @@ Lojavirtual::Application.routes.draw do
   resources :usuarios
   resources :produtos
   resources :itens
-  resources :sessoes  
+  resources :sessoes
+  resources :imagens
 
   namespace :admin do 
     get "/" => "menu#index"
-    get "produtos/situacao_produto"    
+    get "produtos/situacao_produto"
     resources :produtos
-    resources :categoria_produtos    
+    resources :categoria_produtos
+    resources :imagens
   end
  
 end
