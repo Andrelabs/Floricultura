@@ -1,4 +1,5 @@
 <p>
+	<%= image_tag(produto.imagem.url(:small)) %><br />
 	<%= produto.nome %> <br />
 	<%= number_to_currency( produto.preco , unit: "R$", separator: ",", delimiter: "") %> <br />	
 	<% if produto.quantidade > 0 and produto.ativo == true %>

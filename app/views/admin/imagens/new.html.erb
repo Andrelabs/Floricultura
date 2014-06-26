@@ -1,1 +1,10 @@
-<%= "Produto" %> <%= params[:produto_id] %>
+<h3> Adicionar imagem ao produto <strong> <%= @produto.nome %> </strong> </h3>
+
+<%= form_for([:admin , @imagem] , :url => admin_imagens_path ,:multpart => true) do |f| %>
+		<%= f.hidden_field :produto_id , :value =>  params[:produto_id] %>
+		Imagem: <%= f.file_field :imagem %><br />
+		Deseja usar como capa na listagem? <%= f.check_box :capa %><br />
+		<%= f.submit "Adicionar" %>
+<% end %>
+
+<%= link_to "Voltar" , :controller => :produtos , :action => :edit , :id => params[:produto_id] %>

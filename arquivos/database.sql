@@ -38,13 +38,14 @@ create table imagens(
 	id serial primary key,
 	imagem_file_name varchar,
 	imagem_content_type varchar,
-	produto_id integer,
+	imagem_file_size integer,
+	capa boolean,
+	produto_id integer references produtos (id),
 	created_at timestamp,
 	updated_at timestamp
 	);
 
-COMMIT;
-BEGIN;
+
 create table pedidos (
 	id serial primary key,
 	estado varchar default 'carrinho',
@@ -61,6 +62,7 @@ create table itens(
 
 create index pedido_id_idx on itens(pedido_id);
 
+COMMIT;
 
 create table usuarios (
 	id serial primary key,

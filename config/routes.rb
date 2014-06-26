@@ -16,8 +16,7 @@ Lojavirtual::Application.routes.draw do
   resources :produtos
   resources :itens
   resources :sessoes
-  resources :imagens
-
+  
   namespace :admin do 
     get "/" => "menu#index"
     get "produtos/situacao_produto"

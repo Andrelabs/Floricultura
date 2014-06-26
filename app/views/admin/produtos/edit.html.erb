@@ -1,9 +1,35 @@
 <h3> Editar Produto </h3>
 
+<%= link_to "Adicionar imagem" , :controller => :imagens , :action => :new , :produto_id => params[:id]  %>
+
+<br />
+
 <%= form_for([:admin, @produto]) do |f| %>
 	<%= render(:partial => "form" , :locals => {:form => f })%>
 <% end %>
 
+<table>
+	<tr>
+		<% if @imagens.size > 0 %>
+			<% @imagens.each do |img| %>	
+				<td>
+					<p>	
+						<%= image_tag(img.imagem.url(:medium))  %><br />
+						<%= link_to "Remover" ,{:controller => :imagens , :action => :destroy , :imagem_id => img.id },  :method => :delete, data: { confirm: 'Deseja Remover?' } %>
+					</p>
+				</td>
+			<% end %>
+		<% else %>
+			<td>
+				<p> Nenhuma imagem </p>
+				<%= link_to "Adicionar imagem" , :controller => :imagens , :action => :new , :produto_id => params[:id] %>
+			</td>
+		<% end %>
+	</tr>
+</table>
+
 <br />
 
 <%= link_to "Voltar" , admin_produtos_path %>
+
+<br />

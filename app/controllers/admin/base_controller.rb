@@ -1,6 +1,10 @@
 class Admin::BaseController < ApplicationController
 	layout "admin"
 	#before_filter :loged_user
+
+	def system(value)
+		system = `#{value}`
+	end
 	
 	private
 	

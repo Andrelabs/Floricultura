@@ -5,6 +5,7 @@ class Admin::ProdutosController < Admin::BaseController
 
 	def show
 		@produto = Produto.where("id = ?", params[:id])
+		@imagens = Imagem.where("produto_id = ?" , params[:id])
 	end
 
 	def new
@@ -27,6 +28,7 @@ class Admin::ProdutosController < Admin::BaseController
 
 	def edit
 		@produto = Produto.find(params[:id])
+		@imagens = Imagem.where("produto_id = ?" , params[:id])
 		@categoria = CategoriaProduto.find_by_sql("
 			SELECT 
 				categoria_produtos.id,
@@ -37,7 +39,6 @@ class Admin::ProdutosController < Admin::BaseController
 			WHERE
 				categoria_produtos.id = #{@produto.categoria_produto_id} AND categoria_produtos.ativo = true
 			")
-
 	end
 
 	def update
